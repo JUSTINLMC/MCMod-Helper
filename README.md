@@ -1,2 +1,4 @@
 # MCMod-Helper
-A MCMod Wiki Editing Tool
+解决一些编辑 MCMOD 百科时可能遇到的麻烦事儿。  
+仅供个人使用，不保证代码质量。  
+需要搭配油猴插件使用。  
