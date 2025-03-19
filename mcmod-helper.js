@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mcmod Helper
 // @namespace    http://tampermonkey.net/
-// @version      0.0.3
+// @version      0.0.3.1
 // @description  解决部分在 MCMod 百科编辑时遇到的麻烦事
 // @author       Jusolin
 // @license      MIT
@@ -26,7 +26,6 @@
     const CATEGORY_TYPE = 0; //['物品/方块', '生物/实体']
     const MOD_PRIORITY_LIST = ['我的世界原版', '血肉重铸', 'Alex 的生物', 'Alex 的洞穴', '超多生物群系'];
     /* ========== End User Settings ========== */
-    function print(content) {console.log(content);}
     function timer(func, condition) {
         function check(condition) {
             if (typeof(condition) === 'function') {
@@ -133,9 +132,9 @@
             }
             function isInModList(item) {
                 let split = titleParser(item);
-                for (let i of MOD_PRIORITY_LIST) {
-                    if (item.search(split[2]) !== -1) {
-                        console.log(i);
+                for (let mod of MOD_PRIORITY_LIST) {
+                    if (split[split.length - 1].search(mod) !== -1) {
+                        console.log(mod);
                         return true;
                     }
                 }
@@ -163,9 +162,7 @@
                 li_elements = autolink_list.children[0].children[i].children;
                 target_element = li_elements[li_elements.length - 1];
                 title = target_element.title;
-                //print(title)
                 if ((isInCategoryList(title)) && (isInModList(title))) {
-                    print('conditioned title:' + title)
                     if (regexItemNameTest(title)) {
                         target_element.click();
                         allow_run_autolink = true;
@@ -237,7 +234,7 @@
                 if (ele.tagName === 'SPAN') {
                     ele.style.cssText = 'background-color: #629B00D0; color: white; text-shadow: 1px 1px 1px #434343';
                 } else {
-                    ele.style.cssText = 'background-color: #8DCC5A90; color: #578A00';
+                    ele.style.cssText = 'background-color: #8DCC5A50; color: #518000';
                 }
             }
         }
